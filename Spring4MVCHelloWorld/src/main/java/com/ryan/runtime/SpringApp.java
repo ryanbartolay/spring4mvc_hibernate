@@ -1,5 +1,7 @@
 package com.ryan.runtime;
 
+import java.util.List;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -13,10 +15,16 @@ public class SpringApp {
 		UserService userService = (UserService)appContext.getBean("userService");
 		/** insert **/
 		User user = new User();
-		user.setUserId(7668);
 		user.setEmulationId("HAIO");
 		user.setLoginId("1234");
 		userService.addUser(user);
+		
+		List<User> users = userService.listUsers();
+		
+		for(User u : users) {
+			System.out.println(u);
+		}
+		
 //
 //		/** select **/
 //		Stock stock2 = stockBo.findByStockCode("7668");
